@@ -56,9 +56,8 @@
   - Each button with custom permissions.
 * Admin Baypass from Config.
   - You can choose to check admin permission with group or from config.  
-* Vehicle Repair.
+* Vehicle Repair & Clean.
 * Vehicle God / invisibility.
-* Vehicle Clean.
 * Job List from Database.
   - Set job and grade from the list (Only job 1).
 * Player List.

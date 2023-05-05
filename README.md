@@ -44,6 +44,8 @@
 
 * God Mode.
 * Invisibility.
+* Heal.
+* Revive.
 * Vehicle List.
   - Open Vehicle List in game with vehicle spawn.
 * Clean area.
@@ -53,17 +55,30 @@
 * Player Group check for permission.
   - Each button with custom permissions.
 * Admin Baypass from Config.
-  - You can choose to check admin permission with group or from config.
+  - You can choose to check admin permission with group or from config.  
+* Vehicle Repair.
+* Vehicle God / invisibility.
 * Vehicle Clean.
 * Job List from Database.
   - Set job and grade from the list (Only job 1).
+* Player List.
+  - Bring the player.
+  - GoTo the Player.
+  - Revive the player.
+  - Send custom message!
+* Resource List.  
+  - Start a stopped resource
+  - Restart a resource
+  - Refresh all the resource
+ * Item List (ox_inventory).  
+   - Get the name and the label of all items
+   - Ingame giveitem 
 * Resmon 0.00.
-  - Ban for Ip, steam, discord, fivem, xbox, game license.
 * (!) lang ITA only for now
 * ESX NUI
 
 
-![Cattura](https://user-images.githubusercontent.com/113531412/234995532-c8b73fae-0110-40b5-9d8e-0d529b271969.PNG)
+![Cattura](https://user-images.githubusercontent.com/113531412/236582514-a35d84ad-9a04-4cad-98c5-6e564a7fd161.PNG)
 
 ## How To Use
 
@@ -130,6 +145,9 @@ ModVehicle = {
 	},
 			 
 ```
+
+![Cattura333](https://user-images.githubusercontent.com/113531412/236582635-146a0cb5-f153-454d-9cdb-646f11b0e7bc.PNG)
+
 
 > **Note**
 > You need also to edit config files.

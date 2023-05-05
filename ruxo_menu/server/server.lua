@@ -1,4 +1,5 @@
 RXO = {}
+-- don't touch, made by Ruxo for The System RP
 
 ESX = exports["es_extended"]:getSharedObject()
 
@@ -69,6 +70,15 @@ AddEventHandler("RXO:SetJob", function(sceltalavoro, id)
 
 end)
 
+RegisterServerEvent("RXO:Messaggio")
+AddEventHandler("RXO:Messaggio", function(id, messaggio)
+
+    local xPlayer = ESX.GetPlayerFromId(id)
+	
+	xPlayer.showNotification(tostring(messaggio))
+
+end)
+
 ESX.RegisterServerCallback("RXO:Group", function(source, cb) --grazie Boston <3
     local player = ESX.GetPlayerFromId(source)
 
@@ -83,6 +93,13 @@ ESX.RegisterServerCallback("RXO:Group", function(source, cb) --grazie Boston <3
     else
         cb("user")
     end
+end)
+
+ESX.RegisterServerCallback("RXO:Players", function(source, cb) 
+	local xPlayers = ESX.GetPlayers(true,nil,nil)
+
+    cb(xPlayers)
+    
 end)
 
 ESX.RegisterServerCallback("RXO:Identifier", function(source, cb) 

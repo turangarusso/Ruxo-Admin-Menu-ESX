@@ -73,7 +73,7 @@
    - Get the name and the label of all items
    - Ingame giveitem 
 * Resmon 0.00.
-* (!) lang ITA only for now
+* (!) lang EN and ITA only at the moment
 * ESX NUI
 
 

@@ -40,13 +40,6 @@ AddEventHandler("RXO:Clean", function(type, radius, player)
 
 end)
 
-RegisterServerEvent("RXO:Job")
-AddEventHandler("RXO:Job", function()
-
-local job = MySQL.Sync.fetchAll('SELECT * FROM jobs') 
-
-end)
-
 ESX.RegisterServerCallback('RXO:Job', function(source, cb)
 	
 	local job = MySQL.Sync.fetchAll('SELECT * FROM jobs') 

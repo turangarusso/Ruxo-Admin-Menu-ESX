@@ -1,6 +1,6 @@
 RuxoACC = {
 
-	AdminControl = false, -- Protezione aggiuntiva contro redengine !
+	AdminControl = false, -- Protezione aggiuntiva !
 
 	BypassAdmin = {
 		"steam:", 

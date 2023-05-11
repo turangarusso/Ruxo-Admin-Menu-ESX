@@ -47,13 +47,6 @@ ESX.RegisterServerCallback('RXO:Job', function(source, cb)
 	cb(job)
 end)
 
-RegisterServerEvent("RXO:Job_grade")
-AddEventHandler("RXO:Job_grade", function()
-
-	local jobGrade = MySQL.Sync.fetchAll('SELECT * FROM job_grades') 
-
-end)
-
 RegisterServerEvent("RXO:SetJob")
 AddEventHandler("RXO:SetJob", function(sceltalavoro, id)
 

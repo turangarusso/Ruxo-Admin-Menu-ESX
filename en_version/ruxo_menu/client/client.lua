@@ -86,6 +86,12 @@ local elements2 = {
       icon="fas fa-info-circle",
       title="List Vehicles",
   },
+    {
+    unselectable= false,
+    icon="fas fa-search",
+    title="Search",
+    value = "search_car"
+},
     
 }
 
@@ -171,7 +177,29 @@ local elements11 = {
       title="List Items",
   }, 
 }
+local elements12 = {
+    {
+        unselectable= true,
+        icon="", -- disable icon
+        title="Search Item", -- Title of text input to show to user
+        input=true, -- Allow input
+        inputType="text", -- set type to Text
+        inputPlaceholder = "Cola", -- PlaceHolder to Show
+        name="textinput1", -- input identifier
+     },
+}
 
+local elements13 = {
+    {
+        unselectable= true,
+        icon="", -- disable icon
+        title="Search Item", -- Title of text input to show to user
+        input=true, -- Allow input
+        inputType="text", -- set type to Text
+        inputPlaceholder = "rs7", -- PlaceHolder to Show
+        name="textinput3", -- input identifier
+     },
+}
 local elements8 = {
     {
         unselectable= true,
@@ -394,7 +422,24 @@ function OpenRuxo()
         inputMax=2000, -- maximun value
         value = "input"
     }
+    elements11[#elements11+1] ={
 
+        unselectable= true,
+        icon="fas fa-search", -- disable icon
+        title="Search Item", -- Title of text input to show to user
+        input=true, -- Allow input
+        inputType="text", -- set type to Text
+        inputPlaceholder = "Cola", -- PlaceHolder to Show
+        name="textinput2", -- input identifier
+
+    }
+
+    elements11[#elements11+1] ={
+        unselectable= false,
+        icon="fas fa-search",
+        title="Search",
+        value = "search_item"
+    }
     for item, data in pairs(exports.ox_inventory:Items()) do
         itemNames[item] = data.label
         elements11[#elements11+1] = {
@@ -470,7 +515,44 @@ function OpenRuxo()
 
                         ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[2].inputValue)    
                         ESX.ShowNotification("Done")
-                        ESX.CloseContext()
+                         --ESX.CloseContext()
+                    elseif element.value == "search_item" then
+                        elements12 ={}
+
+                        elements12[#elements12+1] ={
+
+                            unselectable= true,
+                            icon="fas fa-info-circle",
+                            title="Quantity",
+                            input=true, -- allow input
+                            inputType="number", -- allow numbers to be inputted
+                            inputValue=1, -- default value
+                            inputMin=0, -- minimum value
+                            inputMax=2000, -- maximun value
+                            value = "input"
+                        }
+
+                        for k, item in ipairs(elements11) do
+                            --local lower = string.lower(item.description) 
+                            if string.find(string.lower(tostring(item.description)), tostring(menu.eles[3].inputValue)) then
+                                elements12[#elements12+1] = {
+                                    icon = "",
+                                    title = tostring(item.title),
+                                    description = tostring(item.description),
+                                    value = "item"
+                                }
+                            end
+                        end
+                        ESX.OpenContext("right", elements12, function(menu,element)
+                            if element.value == "item" then
+                                --print(json.encode(element.title))
+        
+                                ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[1].inputValue)    
+                                ESX.ShowNotification("Done")
+                                --ESX.CloseContext()
+                            end    
+
+                        end) 
 
                     end    
                 end) 
@@ -626,6 +708,17 @@ function OpenRuxo()
                         value = "drive_test"
                     }
                 end
+                elements2[#elements2+1] ={
+
+                    unselectable= true,
+                    icon="fas fa-search", -- disable icon
+                    title="Search Car", -- Title of text input to show to user
+                    input=true, -- Allow input
+                    inputType="text", -- set type to Text
+                    inputPlaceholder = "rs7", -- PlaceHolder to Show
+                    name="textinput3", -- input identifier
+            
+                }
                 for z, veicolo2 in ipairs(RuxoACC.ModVehicle) do
                     
                     elements2[#elements2+1] = {
@@ -640,7 +733,33 @@ function OpenRuxo()
                         ESX.OpenContext("right", elements2, function(menu,element)
                             if element.value == "drive_test2" then
 
-                                ExecuteCommand("car " .. element.title)    
+                                ExecuteCommand("car " .. element.title)
+                            elseif element.value == "search_car" then
+                                elements13 ={}
+
+                                elements13[#elements13+1] = {
+                                    unselectable = true,
+                                    icon = "",
+                                    title = "Search Result",
+                                }
+        
+                                for k, veic in ipairs(RuxoACC.ModVehicle) do
+                                    if string.find(string.lower(tostring(veic)), tostring(menu.eles[3].inputValue)) then
+                                        elements13[#elements13+1] = {
+                                            icon = "",
+                                            title = tostring(veic),
+                                            value = "drive_test3"
+                                        }
+                                    end
+                                end
+                                ESX.OpenContext("right", elements13, function(menu,element)
+                                    if element.value == "drive_test3" then
+                
+                                        ExecuteCommand("car " .. element.title)    
+                                        ESX.ShowNotification("Done")
+                                    end    
+        
+                                end)         
                             end    
                         end)
                     elseif element.value == "drive_test" then

@@ -48,6 +48,7 @@
 * Revive.
 * Vehicle List.
   - Open Vehicle List in game with vehicle spawn.
+  - NEW Search bar for custom vehicles
 * Clean area.
   - Vehicles
   - Peds
@@ -72,6 +73,7 @@
  * Item List (ox_inventory).  
    - Get the name and the label of all items
    - Ingame giveitem 
+   - NEW Search bar for item label
 * Resmon 0.00.
 * (!) lang EN and ITA only at the moment
 * ESX NUI
@@ -157,6 +159,8 @@ ModVehicle = {
 Russo Giovanni M.
 
 BostonG
+
+Made for Evolve RP v2 https://discord.com/invite/Cc7fbazCmB
 
 ## License
 

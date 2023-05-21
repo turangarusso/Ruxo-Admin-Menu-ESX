@@ -2,12 +2,12 @@ fx_version 'adamant'
 
 game 'gta5'
 name 'ruxo_menu'
-version '1.1'
+version '2.5'
 description 'Ruxo menu Beta'
 
 
 shared_scripts{
-    "@es_extended/imports.lua"
+    "@es_extended/imports.lua",
 } 
 
 client_scripts {
@@ -18,7 +18,6 @@ client_scripts {
 server_scripts {
     '@mysql-async/lib/MySQL.lua',	
     'server/server.lua',
-
 } 
 
 dependencies {

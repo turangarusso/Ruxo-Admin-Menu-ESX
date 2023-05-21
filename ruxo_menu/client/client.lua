@@ -1,3 +1,4 @@
+--Ruxo made For Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB
 ESX = exports["es_extended"]:getSharedObject()
 -- don't touch
 local toggle = false --noclip toogle
@@ -6,6 +7,19 @@ local toggleLavoro = false -- toggle jobs
 local checkpermessi = nil -- check player group
 local myJobs = nil 
 local Abilitato = false -- config identifier check 
+local translation= nil
+
+if RuxoACC.Local == "it" then
+    translation = RuxoACC.Translate
+elseif RuxoACC.Local == "en" then
+    translation = RuxoACC.TranslateEN
+elseif RuxoACC.Local == "fr" then
+    translation = RuxoACC.TranslateFR
+elseif RuxoACC.Local == "es" then
+    translation = RuxoACC.TranslateES
+elseif RuxoACC.Local == "de" then
+    translation = RuxoACC.TranslateDE             
+end    
 
 local itemNames = {}
 
@@ -18,49 +32,49 @@ local elements = {
     {
         unselectable= false,
         icon="",
-        title="Ripara Veicolo",
+        title= translation["fix_vehicle"],
         value = "ripara_veicolo"
     },
     {
         unselectable= false,
         icon="",
-        title="Trainer",
+        title=translation["trainer"],
         value = "trainer"
     },
     {
         unselectable= false,
         icon="",
-        title="Lista Players",
+        title=translation["list_player"],
         value = "lista_player"
     },
     {
         unselectable= false,
         icon="",
-        title="Lista Veicoli",
+        title=translation["list_vehicles"],
         value = "lista_veicoli"
     },
     {
         unselectable= false,
         icon="",
-        title="Lista Risorse",
+        title=translation["list_resource"],
         value = "lista_risorse"
     },
     {
         unselectable= false,
         icon="",
-        title="Lista Items",
+        title=translation["list_items"],
         value = "lista_items"
     },
     {
         unselectable= false,
         icon="",
-        title="Pulisci Area",
+        title=translation["clean"],
         value = "clean_up"
     },
     {
         unselectable= false,
         icon="",
-        title="Lista Job",
+        title=translation["jobs"],
         value = "job"
     },
 }
@@ -69,12 +83,18 @@ local elements1 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Lista Veicoli",
+      title=translation["list_vehicles"],
+  },
+  {
+    unselectable= false,
+    icon="fas fa-home",
+    title="Home",
+    value = "Home"
   },
     {
         unselectable= false,
         icon="",
-        title="Veicoli Custom",
+        title=translation["custom_vehicles"],
         value = "veicoli_custom"
     },
     
@@ -84,12 +104,18 @@ local elements2 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Lista Veicoli",
+      title=translation["list_vehicles"],
   },
-   {
+  {
+    unselectable= false,
+    icon="fas fa-home",
+    title="Home",
+    value = "Home"
+},
+    {
     unselectable= false,
     icon="fas fa-search",
-    title="Cerca",
+    title=translation["search"],
     value = "search_car"
 },
     
@@ -99,7 +125,7 @@ local elements4 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Lista Lavori",
+      title=translation["jobs"],
   },
   
 }
@@ -108,7 +134,7 @@ local elements5 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Scegli Grado",
+      title=translation["select_grade"],
   },
   
 }
@@ -121,20 +147,26 @@ local elements6 = {
     },
     {
         unselectable= false,
+        icon="fas fa-home",
+        title="Home",
+        value = "Home"
+    },
+    {
+        unselectable= false,
         icon="",
-        title="Invisibilità",
+        title=translation["inv"],
         value = "invisibilità"
     },
     {
         unselectable= false,
         icon="",
-        title="God Mode",
+        title=translation["god_mode"],
         value = "god_mode"
     },
     {
         unselectable= false,
         icon="",
-        title="Revive",
+        title=translation["revive"],
         value = "revive"
     },
     {
@@ -150,7 +182,7 @@ local elements7 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Lista Players",
+      title=translation["list_player"],
   }, 
 }
 
@@ -158,7 +190,7 @@ local elements9 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Lista Risorse",
+      title=translation["list_resource"],
   }, 
 }
 
@@ -166,7 +198,7 @@ local elements10 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Risorse Stoppate",
+      title=translation["stop_res"],
   }, 
 }
 
@@ -174,14 +206,14 @@ local elements11 = {
     {
       unselectable= true,
       icon="fas fa-info-circle",
-      title="Lista Items",
+      title= translation["list_resource"],
   }, 
 }
 local elements12 = {
     {
         unselectable= true,
         icon="", -- disable icon
-        title="Cerca Item", -- Title of text input to show to user
+        title=translation["search_it"], -- Title of text input to show to user
         input=true, -- Allow input
         inputType="text", -- set type to Text
         inputPlaceholder = "Cola", -- PlaceHolder to Show
@@ -193,7 +225,7 @@ local elements13 = {
     {
         unselectable= true,
         icon="", -- disable icon
-        title="Cerca Item", -- Title of text input to show to user
+        title=translation["search_car"], -- Title of text input to show to user
         input=true, -- Allow input
         inputType="text", -- set type to Text
         inputPlaceholder = "rs7", -- PlaceHolder to Show
@@ -207,18 +239,24 @@ local elements8 = {
         title="<span style=color:purple;> RUXO MENU",
     },
     {
+        unselectable= false,
+        icon="fas fa-home",
+        title="Home",
+        value = "Home"
+    },
+    {
         unselectable= true,
-        icon="", -- disable icon
-        title="Testo Messaggio", -- Title of text input to show to user
+        icon="fas fa-message", -- disable icon
+        title="Message Text", -- Title of text input to show to user
         input=true, -- Allow input
         inputType="text", -- set type to Text
-        inputPlaceholder = "In Caffetteria, grazie!", -- PlaceHolder to Show
+        inputPlaceholder = "Assistance, thanks!", -- PlaceHolder to Show
         name="textinput1", -- input identifier
      },
     {
         unselectable= false,
         icon="",
-        title="Messaggio",
+        title="Message",
         value = "messaggio"
     }, 
     {
@@ -236,7 +274,7 @@ local elements8 = {
    {
         unselectable= false,
         icon="",
-        title="Revive",
+        title=translation["revive"],
         value = "revive"
     },
     {
@@ -253,11 +291,11 @@ local elements3 = {
         unselectable= true,
         icon="fas fa-dragon",
         title="<span style=color:purple;> RUXO MENU",
-      },
+    },
     {
         unselectable= true,
         icon="fas fa-info-circle",
-        title="Inserisci Range",
+        title=translation["range"],
         input=true, -- allow input
         inputType="number", -- allow numbers to be inputted
         inputValue=500, -- default value
@@ -268,22 +306,22 @@ local elements3 = {
     {
         unselectable= false,
         icon="fas fa-car",
-        title="Auto",
-        description = "Elimina autoo",
+        title=translation["veh"],
+        description = translation["del_veh"],
         value = "clean_up_car"
     },
     {
         unselectable= false,
         icon="fas fa-user",
         title="Ped",
-        description = "Elimina ped",
+        description = translation["del_ped"],
         value = "clean_up_ped"
     },
     {
         unselectable= false,
         icon="fas fa-box-open",
         title="Prop",
-        description = "Elimina prop",
+        description = translation["del_prop"],
         value = "clean_up_prop"
     },
     
@@ -338,7 +376,7 @@ RegisterCommand("ruxomenu", function(_src, arg)
                 OpenRuxo()
     
             else 
-                ESX.ShowNotification("Non hai i permessi")    
+                ESX.ShowNotification("You Don't have permissions")    
         
             end 
         end
@@ -346,7 +384,7 @@ RegisterCommand("ruxomenu", function(_src, arg)
     end
 
 end)
-RegisterKeyMapping('ruxomenu', 'Abilita/Disabilita menu', 'keyboard', "numpad8")
+RegisterKeyMapping('ruxomenu', 'Enable/Disable menu', 'keyboard', "numpad8")
 
 --funzione
 function OpenRuxo()  
@@ -357,9 +395,14 @@ function OpenRuxo()
         elements7[#elements7+1] ={
             unselectable= true,
             icon="fas fa-info-circle",
-            title="Lista Players",
+            title=translation["list_player"],
         }
-
+        elements7[#elements7+1] ={
+            unselectable= false,
+            icon="fas fa-circle",
+            title="Blips Players",
+            value = "blips_players"
+        }
         if xPlayers ~= nil then
             for i=1, #xPlayers, 1 do
 
@@ -381,13 +424,13 @@ function OpenRuxo()
     elements9[#elements9+1] ={
         unselectable= true,
         icon="fas fa-info-circle",
-        title="Lista Risorse",
+        title=translation["list_resource"],
     }
 
     elements9[#elements9+1] ={
         unselectable= false,
         icon="fas fa-stop",
-        title="<span style=color:red;> Risorse Stoppate",
+        title="<span style=color:red;> Stopped Resource",
         value = "stopped"
     }
 
@@ -401,20 +444,27 @@ function OpenRuxo()
     elements10[#elements10+1] ={
         unselectable= true,
         icon="fas fa-info-circle",
-        title="Risorse Stoppate",
+        title=translation["stop"],
     }
 
     elements11[#elements11+1] ={
         unselectable= true,
         icon="fas fa-info-circle",
-        title="Lista Items",
+        title= translation["list_resource"],
+    }
+
+    elements11[#elements11+1] ={
+        unselectable= false,
+        icon="fas fa-home",
+        title="Home",
+        value = "Home"
     }
 
     elements11[#elements11+1] ={
 
         unselectable= true,
         icon="fas fa-info-circle",
-        title="Quantità",
+        title=translation["qnt"],
         input=true, -- allow input
         inputType="number", -- allow numbers to be inputted
         inputValue=1, -- default value
@@ -422,11 +472,12 @@ function OpenRuxo()
         inputMax=2000, -- maximun value
         value = "input"
     }
+
     elements11[#elements11+1] ={
 
         unselectable= true,
         icon="fas fa-search", -- disable icon
-        title="Cerca Item", -- Title of text input to show to user
+        title=translation["search_it"], -- Title of text input to show to user
         input=true, -- Allow input
         inputType="text", -- set type to Text
         inputPlaceholder = "Cola", -- PlaceHolder to Show
@@ -437,9 +488,10 @@ function OpenRuxo()
     elements11[#elements11+1] ={
         unselectable= false,
         icon="fas fa-search",
-        title="Cerca",
+        title=translation["search"],
         value = "search_item"
     }
+
     for item, data in pairs(exports.ox_inventory:Items()) do
         itemNames[item] = data.label
         elements11[#elements11+1] = {
@@ -480,15 +532,16 @@ function OpenRuxo()
         
                 ESX.OpenContext("right", elements9, function(menu,element)
                     if element.value == "risorsa" then
+                        --print(json.encode(element.title))
 
                         ExecuteCommand("ensure " .. tostring(element.title))    
-                        ESX.ShowNotification("Fatto")
+                        ESX.ShowNotification(translation["done"])
                         ESX.CloseContext()
 
                     elseif element.value == "refresh" then
 
                         ExecuteCommand("refresh")    
-                        ESX.ShowNotification("Refresh eseguito")
+                        ESX.ShowNotification(translation["done"])
                         ESX.CloseContext()
 
                     elseif element.value == "stopped" then
@@ -496,7 +549,7 @@ function OpenRuxo()
 
                             if element.value == "risorsa_stoppata" then
                                 ExecuteCommand("start " .. element.title)    
-                                ESX.ShowNotification("Start di " .. element.title .. " eseguito")
+                                ESX.ShowNotification("Start of " .. element.title .. " done")
                                 ESX.CloseContext()
 
                             end
@@ -511,17 +564,27 @@ function OpenRuxo()
                 ESX.OpenContext("right", elements11, function(menu,element)
                     if element.value == "item" then
 
-                        ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[2].inputValue)    
-                        ESX.ShowNotification("Fatto")
-                        ESX.CloseContext()
+                        ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[3].inputValue)    
+                        ESX.ShowNotification(translation["done"])
+                    elseif element.value == "Home" then
+                        OpenRuxo()
+                           
                     elseif element.value == "search_item" then
                         elements12 ={}
 
                         elements12[#elements12+1] ={
 
+                            unselectable= false,
+                            icon="fas fa-home",
+                            title="Home",
+                            value = "Home"
+                        }
+
+                        elements12[#elements12+1] ={
+
                             unselectable= true,
                             icon="fas fa-info-circle",
-                            title="Quantity",
+                            title=translation["qnt"],
                             input=true, -- allow input
                             inputType="number", -- allow numbers to be inputted
                             inputValue=1, -- default value
@@ -531,8 +594,7 @@ function OpenRuxo()
                         }
 
                         for k, item in ipairs(elements11) do
-                            --local lower = string.lower(item.description) 
-                            if string.find(string.lower(tostring(item.description)), tostring(menu.eles[3].inputValue)) then
+                            if string.find(string.lower(tostring(item.description)), tostring(menu.eles[4].inputValue)) then
                                 elements12[#elements12+1] = {
                                     icon = "",
                                     title = tostring(item.title),
@@ -543,14 +605,17 @@ function OpenRuxo()
                         end
                         ESX.OpenContext("right", elements12, function(menu,element)
                             if element.value == "item" then
-                                --print(json.encode(element.title))
         
-                                ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[1].inputValue)    
-                                ESX.ShowNotification("Done")
+                                ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[2].inputValue)    
+                                ESX.ShowNotification(translation["done"])
                                 --ESX.CloseContext()
+                            elseif element.value == "Home" then
+                                OpenRuxo()
+                                    
                             end    
 
                         end) 
+
                     end    
                 end) 
             end    
@@ -561,19 +626,20 @@ function OpenRuxo()
                 if vehicle == 0 then
                     --vehicle = GetVehiclePedIsIn(PlayerPedId(),true)
                     ESX.CloseContext()
-                    ESX.ShowNotification("Non sei in un veicolo")
+                    ESX.ShowNotification(translation["not_in"])
 
+                else
+                    SetVehicleFixed(vehicle)
+                    SetVehicleDirtLevel(vehicle,0.0)
+                    SetVehicleBodyHealth(vehicle,1000.0)
+                    SetVehicleEngineHealth(vehicle,1000.0)
+                    SetVehiclePetrolTankHealth(vehicle,1000.0)
+                    vehicle_health = 1000
+                    ESX.CloseContext()
+                    ESX.ShowNotification("Vehicle Fixed")
                 end
-                SetVehicleFixed(vehicle)
-                SetVehicleDirtLevel(vehicle,0.0)
-                SetVehicleBodyHealth(vehicle,1000.0)
-                SetVehicleEngineHealth(vehicle,1000.0)
-                SetVehiclePetrolTankHealth(vehicle,1000.0)
-                vehicle_health = 1000
-                ESX.CloseContext()
-                ESX.ShowNotification("Veicolo Riparato e pulito")
             else
-                ESX.ShowNotification("Voleeevi")
+                ESX.ShowNotification(translation["cant"])
             end
         elseif element.value == "trainer" then
             ESX.OpenContext("right", elements6, function(menu,element)
@@ -596,7 +662,7 @@ function OpenRuxo()
 
                             ESX.CloseContext()
                                 
-                            ESX.ShowNotification("Comando eseguito")
+                            ESX.ShowNotification(translation["done"])
                             toggle = true
                         else
                             SetEntityVisible(pPed, true) --ped visibile
@@ -607,14 +673,16 @@ function OpenRuxo()
 
                             ESX.CloseContext()
                                 
-                            ESX.ShowNotification("Comando eseguito")
+                            ESX.ShowNotification(translation["done"])
                             toggle = false
-
+                            
                         end
                     else
-                        ESX.ShowNotification("Voleeevi")
+                        ESX.ShowNotification(translation["cant"])
                     end 
-                
+                elseif element.value == "Home" then
+                    OpenRuxo()
+                                   
                 elseif element.value == "god_mode" then
 
                     if checkpermessi == "superadmin" or checkpermessi == "admin" or checkpermessi == "founder" or checkpermessi == "cofounder" then 
@@ -627,7 +695,7 @@ function OpenRuxo()
                         if toggle_god == false then
                             SetEntityInvincible(pPed, true)
                             SetEntityInvincible(veh, true)
-                            ESX.ShowNotification("God Attivata")
+                            ESX.ShowNotification("God On")
                             ESX.CloseContext()
                             toggle_god = true
                         else
@@ -639,77 +707,103 @@ function OpenRuxo()
         
                         end
                     else
-                        ESX.ShowNotification("Voleeevi")
+                        ESX.ShowNotification(translation["cant"])
                     end           
                 elseif element.value == "revive" then
 
                     ExecuteCommand("revive me")    
-                    ESX.ShowNotification("Ressato")
+                    ESX.ShowNotification(translation["done"])
                     ESX.CloseContext()
 
                 elseif element.value == "heal" then
 
                     ExecuteCommand("heal me")    
-                    ESX.ShowNotification("Compra il cibo barbone")
+                    ESX.ShowNotification("Buy some food")
                     ESX.CloseContext()
 
                 end       
             end)
         elseif element.value == "lista_player" then
-            ESX.OpenContext("right", elements7, function(menu,element)
-                if element.value == "giocatore" then
-                    local xID = element.description
-                    ESX.OpenContext("right", elements8, function(menu,element)
-                        if element.value == "revive" then
+            if checkpermessi == "founder" or checkpermessi == "cofounder" or checkpermessi == "admin" then 
 
-                            ExecuteCommand("revive " .. xID )    
-                            ESX.ShowNotification("Giocatore Ressato")
+                ESX.OpenContext("right", elements7, function(menu,element)
+                    if element.value == "giocatore" then
+                        local xID = element.description
+                        ESX.OpenContext("right", elements8, function(menu,element)
+                            if element.value == "revive" then
+
+                                ExecuteCommand("revive " .. xID )    
+                                ESX.ShowNotification(translation["done"])
+            
+                            elseif element.value == "heal" then
+            
+                                ExecuteCommand("heal " .. xID)
+                                ClearPedBloodDamage(xID)
         
-                        elseif element.value == "heal" then
-        
-                            ExecuteCommand("heal " .. xID)    
-                            ESX.ShowNotification("Heal fatto")
+                                ESX.ShowNotification(translation["done"])
 
-                        elseif element.value == "bring" then
-        
-                            ExecuteCommand("bring " .. xID)    
-                            ESX.ShowNotification("Bring fatto")
+                            elseif element.value == "bring" then
+            
+                                ExecuteCommand("bring " .. xID)    
+                                ESX.ShowNotification(translation["done"])
 
-                        elseif element.value == "goto" then
-                            
-                            ExecuteCommand("goto " .. xID)    
-                            ESX.ShowNotification("Goto fatto")
-                        elseif element.value == "messaggio" then
-                            local mess = tostring(menu.eles[2].inputPlaceholder)
+                            elseif element.value == "goto" then
+                                
+                                ExecuteCommand("goto " .. xID)    
+                                ESX.ShowNotification(translation["done"])
+                            elseif element.value == "messaggio" then
+                                local mess = tostring(menu.eles[3].inputPlaceholder)
 
-                            if menu.eles[2].inputValue ~= nil then
-                                mess  = tostring(menu.eles[2].inputValue )
+                                if menu.eles[3].inputValue ~= nil then
+                                    mess  = tostring(menu.eles[3].inputValue )
 
-                            end    
+                                end    
 
-                            TriggerServerEvent("RXO:Messaggio", xID, mess)
-                            ESX.ShowNotification("Mess inviato")
+                                TriggerServerEvent("RXO:Messaggio", xID, mess)
+                                ESX.ShowNotification(translation["msg"])
+                            elseif element.value == "Home" then
+                                OpenRuxo()
 
-                        end       
-                    end)    
-                end
-            end)
+                            end       
+                        end)
+                    elseif element.value == "blips_players" then
+                      OpenblipPlayer()
+                      ESX.ShowNotification(translation["done"])
+    
+                    end
+                end)
+            else
+              ESX.ShowNotification(translation["cant"])    
+            end  
         elseif element.value == "lista_veicoli" then
             if checkpermessi == "superadmin" or checkpermessi == "admin" or checkpermessi == "mod" or checkpermessi == "founder" or checkpermessi == "cofounder" then 
-
-                for k, veicolo in ipairs(RuxoACC.ListedVehicle) do
-                    
-                    elements1[#elements1+1] = {
-                        icon = "fas fa-car",
-                        title = tostring(veicolo),
-                        value = "drive_test"
-                    }
+                local vehicles = GetAllVehicleModels()
+                
+                if RuxoACC.GetVehicleFromConfig == false then
+                    for k, veicolo in ipairs(vehicles) do
+                        
+                        elements1[#elements1+1] = {
+                            icon = "fas fa-car",
+                            title = tostring(veicolo),
+                            value = "drive_test"
+                        }
+                    end
+                else
+                    for k, veicolo in ipairs(RuxoACC.ListedVehicle) do
+                        
+                        elements1[#elements1+1] = {
+                            icon = "fas fa-car",
+                            title = tostring(veicolo),
+                            value = "drive_test"
+                        }
+                    end
                 end
+
                 elements2[#elements2+1] ={
 
                     unselectable= true,
                     icon="fas fa-search", -- disable icon
-                    title="Search Car", -- Title of text input to show to user
+                    title=translation["search_car"], -- Title of text input to show to user
                     input=true, -- Allow input
                     inputType="text", -- set type to Text
                     inputPlaceholder = "rs7", -- PlaceHolder to Show
@@ -735,13 +829,20 @@ function OpenRuxo()
                                 elements13 ={}
 
                                 elements13[#elements13+1] = {
-                                    unselectable = true,
-                                    icon = "",
-                                    title = "Search Result",
+                                    unselectable= true,
+                                    icon="fas fa-dragon",
+                                    title="<span style=color:purple;> RUXO MENU: <span style=color:cyan;>Search Result",
+                                }
+
+                                elements13[#elements13+1] = {
+                                    unselectable= false,
+                                    icon="fas fa-home",
+                                    title="Home",
+                                    value="Home"
                                 }
         
                                 for k, veic in ipairs(RuxoACC.ModVehicle) do
-                                    if string.find(string.lower(tostring(veic)), tostring(menu.eles[3].inputValue)) then
+                                    if string.find(string.lower(tostring(veic)), tostring(menu.eles[4].inputValue)) then
                                         elements13[#elements13+1] = {
                                             icon = "",
                                             title = tostring(veic),
@@ -753,19 +854,28 @@ function OpenRuxo()
                                     if element.value == "drive_test3" then
                 
                                         ExecuteCommand("car " .. element.title)    
-                                        ESX.ShowNotification("Done")
+                                        ESX.ShowNotification(translation["done"])
+                                    elseif element.value == "Home" then
+                                        OpenRuxo()
+                                                                                               
                                     end    
         
-                                end)    
+                                end)
+                            elseif element.value == "Home" then
+                                OpenRuxo()
+                                                                                          
                             end    
                         end)
                     elseif element.value == "drive_test" then
 
-                        ExecuteCommand("car " .. element.title)    
+                        ExecuteCommand("car " .. element.title)
+                    elseif element.value == "Home" then
+                        OpenRuxo()
+                                           
                     end     
                 end)
             else
-                ESX.ShowNotification("Voleeevi")
+                ESX.ShowNotification(translation["cant"])
             end          
         elseif element.value == "clean_up" then
             if checkpermessi == "superadmin" or checkpermessi == "admin" or checkpermessi == "mod" or checkpermessi == "founder" or checkpermessi == "cofounder" then 
@@ -779,25 +889,29 @@ function OpenRuxo()
 
                         TriggerServerEvent("RXO:Clean", type, range, xPlayer)
 
-                        ESX.ShowNotification("Area Pulita")
+                        ESX.ShowNotification(translation["area"])
+                        ESX.CloseContext()
 
                     elseif element.value == "clean_up_ped" then
                         local type = "peds"
 
                         TriggerServerEvent("RXO:Clean", type, range, xPlayer)
 
-                        ESX.ShowNotification("Area Pulita")
+                        ESX.ShowNotification(translation["area"])
+                        ESX.CloseContext()
 
                     elseif element.value == "clean_up_prop" then
                         local type = "props"
 
                         TriggerServerEvent("RXO:Clean", type, range, xPlayer)
 
-                        ESX.ShowNotification("Area Pulita")
+                        ESX.ShowNotification(translation["area"])
+                        ESX.CloseContext()
+
                     end     
                 end)
             else
-                ESX.ShowNotification("Voleeevi")
+                ESX.ShowNotification(translation["cant"])
             end    
         elseif element.value == "job" then
             if checkpermessi == "superadmin" or checkpermessi == "admin" or checkpermessi == "founder" or checkpermessi == "cofounder" then 
@@ -815,6 +929,13 @@ function OpenRuxo()
 
                     if element.value == "lavoro" then
                         elements5 = {}
+
+                        elements5[#elements5+1] = {
+                            unselectable= true,
+                            icon="fas fa-dragon",
+                            title="<span style=color:purple;> RUXO MENU",
+                        }
+
                         sceltalavoro = tostring(element.title)
                         for k, gradolavoro in ipairs(myGrade) do
 
@@ -836,7 +957,7 @@ function OpenRuxo()
 
                                 TriggerServerEvent("RXO:SetJob",sceltalavoro, element.title)
                                 
-                                ESX.ShowNotification("Job settato")
+                                ESX.ShowNotification(translation["job_set"])
                                 elements5 = {}
                                 ESX.CloseContext()
 
@@ -846,9 +967,61 @@ function OpenRuxo()
                     end
                 end)
             else
-                ESX.ShowNotification("Voleeevi")
+                ESX.ShowNotification(translation["cant"])
             end 
         end
     end)
 
+end
+local mostrablip = false
+
+OpenblipPlayer = function ()
+    mostrablip = not mostrablip
+    if mostrablip then
+        mostrablip = true
+        ESX.ShowNotification(translation["blip_on"])
+    else
+        mostrablip = false
+        ESX.ShowNotification(translation["blip_off"])
+    end
+    Citizen.CreateThread(function()
+        local blips = {}
+        
+        while mostrablip do
+            local playerson = GetPlayers()
+            
+            Citizen.Wait(1000) -- refresh blip ogni x millisecondi
+            for _, player in ipairs(playerson) do
+                local ped = GetPlayerPed(player)
+                if mostrablip then
+                    RemoveBlip(blips[player])
+                    local playerName = GetPlayerName(player)
+                    local playerPos = GetEntityCoords(ped)
+                    local PlayerBlip = AddBlipForCoord(playerPos.x, playerPos.y, playerPos.z)
+                    
+                    SetBlipSprite(PlayerBlip, 1)
+                    SetBlipColour(PlayerBlip, 1)
+                    SetBlipDisplay(PlayerBlip, 2)
+                    SetBlipScale(PlayerBlip, 0.8)
+                    SetBlipAsShortRange(PlayerBlip, false)
+                    BeginTextCommandSetBlipName("STRING")
+                    AddTextComponentString(playerName)
+                    EndTextCommandSetBlipName(PlayerBlip)
+
+                    blips[player] = PlayerBlip
+
+                else
+                    for blip, v in pairs(blips) do
+                        RemoveBlip(v)
+                    end
+                    isShowingBlips = false
+                    return
+                end
+            end
+        end
+        return
+    end)
+    if not mostrablip then 
+        return
+    end
 end

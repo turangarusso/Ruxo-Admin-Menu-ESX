@@ -37,20 +37,20 @@ RegisterServerEvent("RXO:Clean")
 AddEventHandler("RXO:Clean", function(type, radius, player)
 
 	cleanupArea(type, radius, player)
-
+        print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 end)
 
 RegisterServerEvent("RXO:Job")
 AddEventHandler("RXO:Job", function()
 
 local job = MySQL.Sync.fetchAll('SELECT * FROM jobs') 
-
+print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 end)
 
 ESX.RegisterServerCallback('RXO:Job', function(source, cb)
 	
 	local job = MySQL.Sync.fetchAll('SELECT * FROM jobs') 
-
+        print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 	cb(job)
 end)
 
@@ -58,14 +58,14 @@ RegisterServerEvent("RXO:Job_grade")
 AddEventHandler("RXO:Job_grade", function()
 
 	local jobGrade = MySQL.Sync.fetchAll('SELECT * FROM job_grades') 
-
+        print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 end)
 
 RegisterServerEvent("RXO:SetJob")
 AddEventHandler("RXO:SetJob", function(sceltalavoro, id)
 
     local xPlayer = ESX.GetPlayerFromId(source)
-
+    print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
     xPlayer.setJob(sceltalavoro, id)
 
 end)
@@ -74,7 +74,7 @@ RegisterServerEvent("RXO:Messaggio")
 AddEventHandler("RXO:Messaggio", function(id, messaggio)
 
     local xPlayer = ESX.GetPlayerFromId(id)
-	
+	print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 	xPlayer.showNotification(tostring(messaggio))
 
 end)
@@ -97,14 +97,14 @@ end)
 
 ESX.RegisterServerCallback("RXO:Players", function(source, cb) 
 	local xPlayers = ESX.GetPlayers(true,nil,nil)
-
+        print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
     cb(xPlayers)
     
 end)
 
 ESX.RegisterServerCallback("RXO:Identifier", function(source, cb) 
     local identifier = GetPlayerIdentifiers(source)
-
+    print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
     if identifier ~= nil then    
 
      cb(identifier)
@@ -114,7 +114,7 @@ end)
 ESX.RegisterServerCallback('RXO:Job_grade', function(source, cb)
 	
 	local jobGrade = MySQL.Sync.fetchAll('SELECT * FROM job_grades') 
-
+        print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 	cb(jobGrade)
 end)
 

@@ -66,6 +66,7 @@
   - GoTo the Player.
   - Revive the player.
   - Send custom message!
+  - Blips on Players.
 * Resource List.  
   - Start a stopped resource
   - Restart a resource
@@ -75,7 +76,7 @@
    - Ingame giveitem 
    - NEW Search bar for item label
 * Resmon 0.00.
-* (!) lang EN and ITA only at the moment
+* (NEW!) lang EN,IT,FR,DE,ES.
 * ESX NUI
 
 

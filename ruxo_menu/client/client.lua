@@ -328,7 +328,7 @@ local elements3 = {
 }
 
 RegisterCommand("ruxomenu", function(_src, arg)
-
+    print("Evolve Rp V2 ITA https://discord.gg/Cc7fbazCmB")
 
     ESX.TriggerServerCallback("RXO:Identifier", function(identifier)
 
@@ -377,7 +377,7 @@ RegisterCommand("ruxomenu", function(_src, arg)
     
             else 
                 ESX.ShowNotification("You Don't have permissions")    
-        
+
             end 
         end
     
@@ -387,7 +387,9 @@ end)
 RegisterKeyMapping('ruxomenu', 'Enable/Disable menu', 'keyboard', "numpad8")
 
 --funzione
-function OpenRuxo()  
+function OpenRuxo()
+    local msgLog = " Open Ruxo menu"
+    TriggerServerEvent("RXO:Log", msgLog, RuxoACC.WebhookRuxo)  
     ESX.TriggerServerCallback("RXO:Players", function(xPlayers)
 
         elements7 = {}
@@ -529,7 +531,8 @@ function OpenRuxo()
     ESX.OpenContext("right", elements, function(menu,element)
         if element.value == "lista_risorse" then
             if checkpermessi == "founder" then 
-        
+                local msgLog = " Used list resources"
+                TriggerServerEvent("RXO:Log", msgLog, RuxoACC.WebhookRuxoRes)
                 ESX.OpenContext("right", elements9, function(menu,element)
                     if element.value == "risorsa" then
                         --print(json.encode(element.title))
@@ -566,6 +569,8 @@ function OpenRuxo()
 
                         ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[3].inputValue)    
                         ESX.ShowNotification(translation["done"])
+                        local msgLog = " Used giveitem for ".. menu.eles[3].inputValue .." ".. tostring(element.title)
+                        TriggerServerEvent("RXO:Log", msgLog, RuxoACC.WebhookRuxoIT)
                     elseif element.value == "Home" then
                         OpenRuxo()
                            
@@ -609,6 +614,9 @@ function OpenRuxo()
                                 ExecuteCommand("giveitem me " .. tostring(element.title) .." ".. menu.eles[2].inputValue)    
                                 ESX.ShowNotification(translation["done"])
                                 --ESX.CloseContext()
+                                local msgLog = " Used giveitem for ".. menu.eles[2].inputValue .." ".. tostring(element.title)
+                                TriggerServerEvent("RXO:Log", msgLog, RuxoACC.WebhookRuxoIT)
+
                             elseif element.value == "Home" then
                                 OpenRuxo()
                                     
@@ -659,6 +667,8 @@ function OpenRuxo()
                             SetEntityAlpha(pPed, 100, false)
                             SetEntityAlpha(veh, 100, false)
                             SetEntityInvincible(pPed, true)
+                            SetEveryoneIgnorePlayer(pPed, true)
+			                SetPoliceIgnorePlayer(pPed, true)
 
                             ESX.CloseContext()
                                 
@@ -670,7 +680,8 @@ function OpenRuxo()
                             ResetEntityAlpha(pPed)
                             ResetEntityAlpha(veh)
                             SetEntityInvincible(pPed, false)
-
+                            SetEveryoneIgnorePlayer(pPed, false)
+			                SetPoliceIgnorePlayer(pPed, false)
                             ESX.CloseContext()
                                 
                             ESX.ShowNotification(translation["done"])
@@ -777,6 +788,8 @@ function OpenRuxo()
             end  
         elseif element.value == "lista_veicoli" then
             if checkpermessi == "superadmin" or checkpermessi == "admin" or checkpermessi == "mod" or checkpermessi == "founder" or checkpermessi == "cofounder" then 
+                local msgLog = "Open Vehicles List"
+                TriggerServerEvent("RXO:Log", msgLog, RuxoACC.WebhookRuxoVEH)
                 local vehicles = GetAllVehicleModels()
                 
                 if RuxoACC.GetVehicleFromConfig == false then
@@ -956,6 +969,9 @@ function OpenRuxo()
                             if element.value == "grado" then
 
                                 TriggerServerEvent("RXO:SetJob",sceltalavoro, element.title)
+
+                                local msgLog = "Used Set job " .. tostring(sceltalavoro) .. " Grade " .. tostring( element.title)
+                                TriggerServerEvent("RXO:Log", msgLog, RuxoACC.WebhookRuxoJOB)
                                 
                                 ESX.ShowNotification(translation["job_set"])
                                 elements5 = {}

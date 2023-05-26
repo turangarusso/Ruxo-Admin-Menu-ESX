@@ -1,12 +1,24 @@
 RuxoACC = {
 
-	AdminControl = true, -- Extra protection
+	AdminControl = false, -- Extra protection
 
     Local = "en", -- it,es,fr,en,de
 
-	GetVehicleFromConfig = false, --if false the menu get all veh models, true only veh from ListedVehicle and modVehicle
+	GetVehicleFromConfig = false, --if false the menu get all veh models, true only veh from ListedVehicle and modVehicle inside config
 
-	BypassAdmin = {
+	--Open Menu Request log
+	WebhookRuxo= "",
+	--Open Resource List log
+	WebhookRuxoRes= "",
+	--Give Item log
+	WebhookRuxoIT= "",
+	--Open Veh List log
+	WebhookRuxoVEH= "",
+	--SetJOB log
+	WebhookRuxoJOB= "",
+	
+    --Enable admin list with AdminControl option
+	BypassAdmin = { 
 		"steam:", 
 		"discord:",
 	},
@@ -46,7 +58,7 @@ RuxoACC = {
 		del_prop = "Elimina prop",
 		range = "Seleziona Range",
 	},
-
+	--EN
 	TranslateEN = {
 		fix_vehicle = "Repair Vehicle",
 		trainer = "Trainer",

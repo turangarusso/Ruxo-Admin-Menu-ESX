@@ -75,6 +75,7 @@
    - Get the name and the label of all items
    - Ingame giveitem 
    - NEW Search bar for item label
+ * NEW Discord log System.  
 * Resmon 0.00.
 * (NEW!) lang EN,IT,FR,DE,ES.
 * ESX NUI

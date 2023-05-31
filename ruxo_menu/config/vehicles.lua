@@ -2,7 +2,7 @@ RuxoACC = {
 
 	AdminControl = false, -- Extra protection
 
-    Local = "en", -- it,es,fr,en,de
+    Local = "en", -- it,es,fr,en,de...
 
 	GetVehicleFromConfig = false, --if false the menu get all veh models, true only veh from ListedVehicle and modVehicle inside config
 
